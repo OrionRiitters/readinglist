@@ -70,9 +70,16 @@ def change_read():
     try:
         book_id = ui.get_book_id()
         new_read = ui.get_read_value()
+<<<<<<< HEAD
         store.set_book_read(book_id, new_read)
     except BookError:
         print('Book not found!')
+=======
+
+        store.set_book_read(book_id, new_read)
+    except:
+        print('\nIt looks like that book ID doesn\'t exist here.\n')
+>>>>>>> 285ba0b00e61c598d0f14553e0eea88f3b641acd
 
     # TODO show error message if book's ID is not found.
 
