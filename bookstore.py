@@ -38,8 +38,11 @@ class BookStore:
             :param id the ID of the book to change the read status
             :param read True for book has been read, False otherwise
             """
-            book = self.get_book_by_id(id)
-            book.read = read
+            try:
+                book = self.get_book_by_id(id)
+                book.read = read
+            except:
+                raise BookError
             # TODO raise BookError if book not found. Hint: get_book_by_id returns None if book is not found.
 
 
@@ -76,8 +79,9 @@ class BookStore:
             :param term the search term
             :returns a list of books with author or title that match the search term.
             """
-            
+
             lower_term = term.lower()
+        
             return [book for book in self._books if lower_term in book.title.lower() or lower_term in book.author.lower()]
 
 

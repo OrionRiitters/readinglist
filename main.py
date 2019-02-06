@@ -67,9 +67,13 @@ def search_book():
 
 def change_read():
 
-    book_id = ui.get_book_id()
-    new_read = ui.get_read_value()
-    store.set_book_read(book_id, new_read)
+    try:
+        book_id = ui.get_book_id()
+        new_read = ui.get_read_value()
+        store.set_book_read(book_id, new_read)
+    except BookError:
+        print('Book not found!')
+
     # TODO show error message if book's ID is not found.
 
 def delete_book():
@@ -77,7 +81,7 @@ def delete_book():
     try:
         book=store.get_book_by_id(book_id)
         store.delete_book(book)
-    except:
+    except BookError:
         print("Error: Book Not Found")
 def quit_program():
     ui.message('Thanks and bye!')
